@@ -193,7 +193,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16 relative">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 hover:text-green-200">
-            <img src="/sentra-logo.png" alt="Sentra Tamansari Logo" className="h-15 w-auto" />
+            <img src="/sentra-logo.png" alt="Sentra Tamansari Logo" className="h-16 w-auto" />
             <span className="text-xl font-bold">Sentra Tamansari</span>
           </Link>
 
