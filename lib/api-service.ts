@@ -1,6 +1,6 @@
 import { Shop, Product, Category, Block, HouseNumber, Activity } from './types';
 
-const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_URL || 'https://sentratamansari.com'}/api/v1`;
+const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_URL || 'https://sentratamansari.com'}`;
 
 export class ApiService {
   private baseURL: string;
