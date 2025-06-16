@@ -79,7 +79,7 @@ const SearchPage: React.FC = () => {
                           product.foto
                             ? product.foto.startsWith('https')
                               ? product.foto
-                              : `https://sentratamansari.com/public/photos/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
+                              : `https://sentratamansari.com/photos/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
                             : 'http://localhost:3001/assets/default-food.jpg'
                         }
                         alt={product.nama}

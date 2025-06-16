@@ -82,7 +82,7 @@ export default function StoreDetailPage() {
               store.foto
                 ? store.foto.startsWith('https')
                   ? store.foto
-                  : `https://sentratamansari.com/public/photos/${store.foto.startsWith('/') ? store.foto.slice(1) : store.foto}`
+                  : `https://sentratamansari.com/photos/${store.foto.startsWith('/') ? store.foto.slice(1) : store.foto}`
                 : 'http://localhost:3001/assets/default-store.jpg'
             }
             alt={store.nama ?? 'Store Logo'}
