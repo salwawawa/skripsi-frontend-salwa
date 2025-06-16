@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost'], // Add your backend hostname here
+    domains: ['sentratamansari.com'], // Add your backend hostname here
   },
 };
 

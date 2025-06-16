@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom landscape orientation logo shift */
+@media (orientation: landscape) {
+  .logo-shift-left {
+    margin-left: -10px;
+  }
+}
