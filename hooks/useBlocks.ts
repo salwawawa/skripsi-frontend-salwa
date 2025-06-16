@@ -18,7 +18,7 @@ export function useBlocks() {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch('http://sentratamansari.com/api/v1/blocks');
+        const response = await fetch('https://sentratamansari.com/api/v1/blocks');
         if (!response.ok) {
           throw new Error('Failed to fetch blocks');
         }
