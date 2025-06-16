@@ -82,7 +82,7 @@ export default function ActivityDetailPage() {
                 activity.foto
                   ? activity.foto.startsWith('https')
                     ? activity.foto
-                    : `https://sentratamansari.com/photos/activities/${activity.foto.startsWith('/') ? activity.foto.slice(1) : activity.foto}`
+                    : `https://sentratamansari.com/${activity.foto.startsWith('/') ? activity.foto.slice(1) : activity.foto}`
                   : 'http://localhost:3001/assets/default-food.jpg'
               }
               alt={activity.nama}
