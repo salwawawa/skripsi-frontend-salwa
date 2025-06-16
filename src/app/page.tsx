@@ -112,9 +112,9 @@ const HomePage: React.FC = () => {
                       <Image
                         src={
                           product.foto
-                            ? product.foto.startsWith('http') // Sudah full URL
+                            ? product.foto.startsWith('https') // Sudah full URL
                               ? product.foto
-                              : `http://localhost:3001/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
+                              : `https://sentratamansari.com/photos/products/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
                             : 'http://localhost:3001/assets/default-food.jpg'
                         }
                         alt={product.nama}

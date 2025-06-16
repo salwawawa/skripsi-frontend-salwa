@@ -80,9 +80,9 @@ export default function StoreDetailPage() {
           <Image
             src={
               store.foto
-                ? store.foto.startsWith('http')
+                ? store.foto.startsWith('https')
                   ? store.foto
-                  : `http://localhost:3001/${store.foto.startsWith('/') ? store.foto.slice(1) : store.foto}`
+                  : `https://sentratamansari.com/photos/shops/${store.foto.startsWith('/') ? store.foto.slice(1) : store.foto}`
                 : 'http://localhost:3001/assets/default-store.jpg'
             }
             alt={store.nama ?? 'Store Logo'}

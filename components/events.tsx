@@ -48,9 +48,9 @@ const EventsPage = () => {
                     <div className="relative w-full sm:w-1/3 h-40">
                       {activity.foto ? (
                         <Image
-                          src={activity.foto.startsWith('http') || activity.foto.startsWith('/')
+                          src={activity.foto.startsWith('https') || activity.foto.startsWith('/')
                             ? activity.foto
-                            : 'http://localhost:3001/' + activity.foto}
+                            : 'https://sentratamansari.com/' + activity.foto}
                           alt={activity.nama}
                           layout="fill"
                           objectFit="cover"

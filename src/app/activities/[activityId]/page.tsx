@@ -80,9 +80,9 @@ export default function ActivityDetailPage() {
             <Image 
               src={
                 activity.foto
-                  ? activity.foto.startsWith('http')
+                  ? activity.foto.startsWith('https')
                     ? activity.foto
-                    : `http://localhost:3001/${activity.foto.startsWith('/') ? activity.foto.slice(1) : activity.foto}`
+                    : `https://sentratamansari.com/photos/activities/${activity.foto.startsWith('/') ? activity.foto.slice(1) : activity.foto}`
                   : 'http://localhost:3001/assets/default-food.jpg'
               }
               alt={activity.nama}

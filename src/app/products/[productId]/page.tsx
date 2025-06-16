@@ -116,9 +116,9 @@ export default function ProductDetailPage() {
             <Image 
               src={
                 product.foto
-                  ? product.foto.startsWith('http')
+                  ? product.foto.startsWith('https')
                     ? product.foto
-                    : `http://localhost:3001/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
+                    : `https://sentratamansari.com/photos/products/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
                   : 'http://localhost:3001/assets/default-food.jpg'
               }
               alt={product.nama}
