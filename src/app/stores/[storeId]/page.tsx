@@ -82,7 +82,7 @@ export default function StoreDetailPage() {
               store.foto
                 ? store.foto.startsWith('https')
                   ? store.foto
-                  : `https://sentratamansari.com/${store.foto.startsWith('/') ? store.foto.slice(1) : store.foto}`
+                  : `https://sentratamansari.com/public/photos/${store.foto.startsWith('/') ? store.foto.slice(1) : store.foto}`
                 : 'http://localhost:3001/assets/default-store.jpg'
             }
             alt={store.nama ?? 'Store Logo'}
@@ -117,7 +117,7 @@ export default function StoreDetailPage() {
                         product.foto
                           ? product.foto.startsWith('http')
                             ? product.foto
-                            : `http://localhost:3001/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
+                            : `https://sentratamansari.com/public/photos/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
                           : 'http://localhost:3001/assets/default-food.jpg'
                       }
                       alt={product.nama}
