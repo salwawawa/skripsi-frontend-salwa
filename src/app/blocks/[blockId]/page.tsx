@@ -92,7 +92,7 @@ export default function BlockPage() {
                 <div className="md:flex">
                   <div className="md:w-1/3 relative w-32 h-32 flex justify-center mx-auto">
                     <Image 
-                      src={store.foto ? (store.foto.startsWith('http') ? store.foto : `http://localhost:3001/${store.foto.startsWith('/') ? store.foto.slice(1) : store.foto}`) : '/assets/default-store.jpg'} 
+                      src={store.foto ? (store.foto.startsWith('https') ? store.foto : `http://sentratamansari.com/photos/shops/${store.foto.startsWith('/') ? store.foto.slice(1) : store.foto}`) : '/assets/default-store.jpg'} 
                       alt={store.nama} 
                       fill 
                       className="object-contain"
