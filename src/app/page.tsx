@@ -37,6 +37,24 @@ const HomePage: React.FC = () => {
     }).format(price);
   };
 
+  // Function to generate image URL with cache busting
+  const getImageUrl = (product: Product) => {
+    if (!product.foto) {
+      return 'http://localhost:3001/assets/default-food.jpg';
+    }
+    
+    const baseUrl = product.foto.startsWith('https') 
+      ? product.foto
+      : `https://sentratamansari.com/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`;
+    
+    // Tambahkan cache buster berdasarkan updatedAt atau fallback ke timestamp
+    const cacheBuster = product.updatedAt 
+      ? `?v=${new Date(product.updatedAt).getTime()}`
+      : `?v=${Date.now()}`;
+    
+    return baseUrl + cacheBuster;
+  };
+
   // Filter products for recommendations dengan validasi array
   const [recommendedProducts, setRecommendedProducts] = React.useState<Product[]>([]);
 
@@ -110,16 +128,12 @@ const HomePage: React.FC = () => {
                   >
                     <div className="relative w-full h-24">
                       <Image
-                        src={
-                          product.foto
-                            ? product.foto.startsWith('https') // Sudah full URL
-                              ? product.foto
-                              : `https://sentratamansari.com/${product.foto.startsWith('/') ? product.foto.slice(1) : product.foto}`
-                            : 'http://localhost:3001/assets/default-food.jpg'
-                        }
+                        key={`${product.id}-${product.updatedAt || Date.now()}`} // Tambah key untuk force re-render
+                        src={getImageUrl(product)} // Gunakan fungsi dengan cache busting
                         alt={product.nama}
                         layout="fill"
                         objectFit="cover"
+                        unoptimized={true} // Disable Next.js optimization untuk menghindari caching
                         onError={(e) => {
                           const target = e.target as HTMLImageElement
                           target.src = 'http://localhost:3001/assets/default-food.jpg'
