@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useProducts } from '../../../../hooks/useProducts';
 import { useStores } from '../../../../hooks/useStores';
+import { apiService } from '../../../../lib/api-service';
 import { Product } from '../../../../lib/types';
 
 export default function ProductDetailPage() {
@@ -16,6 +17,8 @@ export default function ProductDetailPage() {
 
   const [product, setProduct] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     if (!productId) return;
@@ -28,6 +31,14 @@ export default function ProductDetailPage() {
         const data = await fetchProduct(productId);
         if (isMounted) {
           setProduct(data);
+          if (data?.shop_id) {
+            const recommended = await apiService.getProductsByShop(data.shop_id);
+            if (isMounted) {
+              // Exclude current product from recommended
+              const filtered = recommended.filter((p: Product) => p.id !== data.id);
+              setRecommendedProducts(filtered);
+            }
+          }
         }
       } catch (err) {
         if (isMounted) {
@@ -42,6 +53,7 @@ export default function ProductDetailPage() {
       isMounted = false;
     };
   }, [productId]);
+
 
   // Format price helper
   const formatPrice = (price: number) => {
@@ -110,7 +122,7 @@ export default function ProductDetailPage() {
   return (
     <div className="min-h-screen bg-white mx-auto py-6 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6 md:flex gap-8">
-        {/* Product Image */}
+        {/* Product Image */} 
         <div className="md:w-1/2 mb-6 md:mb-0 rounded-lg overflow-hidden">
           <div className="relative h-64 md:h-96 rounded-lg overflow-hidden">
             <Image 
@@ -155,6 +167,47 @@ export default function ProductDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Recommended Products Section */}
+      {recommendedProducts.length > 0 && (
+        <div className="max-w-4xl mx-auto mt-12 pt-6 border-t border-gray-300">
+          <h2 className="text-xl font-bold text-black mb-6 text-center">Produk dari {getStoreName(product.shop_id)}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {recommendedProducts.map((recProduct) => (
+              <Link
+                key={recProduct.id}
+                href={`/products/${recProduct.id}`}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+              >
+                <div className="relative h-40 w-full">
+                  <Image
+                    src={
+                      recProduct.foto
+                        ? recProduct.foto.startsWith('https')
+                          ? recProduct.foto
+                          : `https://sentratamansari.com/${recProduct.foto.startsWith('/') ? recProduct.foto.slice(1) : recProduct.foto}`
+                        : 'http://localhost:3001/assets/default-food.jpg'
+                    }
+                    alt={recProduct.nama}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = 'http://localhost:3001/assets/default-food.jpg';
+                    }}
+                  />
+                </div>
+                <div className="p-4">
+              <h3 className="text-center font-semibold mb-1 text-black">{recProduct.nama}</h3>
+              <p className="text-center text-green-600 font-bold">{formatPrice(recProduct.harga)}</p>
+              <p className="text-xs text-black mt-2 text-center">{getStoreName(recProduct.shop_id)}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
