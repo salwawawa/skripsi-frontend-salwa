@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useProducts } from '../../hooks/useProducts'; // Sesuaikan path
 import { useStores } from '../../hooks/useStores'; // Sesuaikan path
+import { useCategories } from '../../hooks/useCategories'; // Import useCategories hook
 import { Product } from '../../lib/types';
 import { useRouter } from 'next/navigation';
 
@@ -16,6 +17,10 @@ const HomePage: React.FC = () => {
   const router = useRouter();
   const { products, loading: productsLoading, error: productsError } = useProducts();
   const { stores, loading: storesLoading, error: storesError } = useStores();
+  const { categories, loading: categoriesLoading, error: categoriesError } = useCategories(); // Use categories hook
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
 
   // Function to handle navigation to product detail page
   const handleViewDetail = (productId: string) => {
@@ -55,16 +60,28 @@ const HomePage: React.FC = () => {
     return baseUrl + cacheBuster;
   };
 
-  // Filter products for recommendations dengan validasi array
-  const [recommendedProducts, setRecommendedProducts] = React.useState<Product[]>([]);
+  // Shuffle function (Fisher-Yates)
+  const shuffleArray = (array: Product[]) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
 
-  React.useEffect(() => {
+  // Update recommendedProducts based on selectedCategoryId and products
+  useEffect(() => {
     if (products && Array.isArray(products)) {
-      setRecommendedProducts(products); // Changed from products.slice(0, 4) to products to show all products
+      if (selectedCategoryId === null) {
+        setRecommendedProducts(shuffleArray(products));
+      } else {
+        setRecommendedProducts(shuffleArray(products.filter(p => p.category_id === selectedCategoryId)));
+      }
     } else {
       setRecommendedProducts([]);
     }
-  }, [products]);
+  }, [products, selectedCategoryId]);
 
   return (
     <>
@@ -93,6 +110,33 @@ const HomePage: React.FC = () => {
           <h2 className="text-2xl font-extrabold mb-6 text-center text-black">
             Menu Rekomendasi Hari Ini
           </h2>
+
+        {/* Category Buttons */}
+        <div className="flex justify-center space-x-4 mb-6 px-4 flex-wrap">
+          <button
+            onClick={() => setSelectedCategoryId(null)}
+            className={`px-3 py-1.5 rounded-full border transition-colors duration-300 ${
+              selectedCategoryId === null
+                ? 'bg-green-600 text-white border-green-600'
+                : 'bg-white text-green-600 border-green-600 hover:bg-green-100'
+            }`}
+          >
+            Semua Produk
+          </button>
+          {!categoriesLoading && !categoriesError && categories.map(category => (
+            <button
+              key={category.id}
+              onClick={() => setSelectedCategoryId(category.id)}
+              className={`px-3 py-1.5 rounded-full border transition-colors duration-300 ${
+                selectedCategoryId === category.id
+                  ? 'bg-green-600 text-white border-green-600'
+                  : 'bg-white text-green-600 border-green-600 hover:bg-green-100'
+              }`}
+            >
+              {category.nama}
+            </button>
+          ))}
+        </div>
          
           {/* Loading State */}
           {(productsLoading || storesLoading) && (
