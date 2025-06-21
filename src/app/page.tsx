@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
           </h2>
 
         {/* Category Buttons */}
-        <div className="flex justify-center space-x-4 mb-6 px-4 flex-wrap">
+        <div className="flex justify-center flex-wrap gap-3 mb-6 px-4">
           <button
             onClick={() => setSelectedCategoryId(null)}
             className={`px-3 py-1.5 rounded-full border transition-colors duration-300 ${
