@@ -205,21 +205,21 @@ export default function Navbar() {
             <Link href="/events" className="hover:text-green-200 transition-colors">Events</Link>
 
             {/* Desktop Search Form */}
-            <form onSubmit={handleSearchSubmit} className="ml-4 flex items-center bg-yellow-400 rounded-full px-3 py-1 shadow-md relative">
+            <form onSubmit={handleSearchSubmit} className="ml-4 flex items-center bg-white rounded-full px-2 py-1 shadow-md relative w-60">
               <input
                 ref={inputRef}
                 type="text"
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-white text-black rounded-l-full px-3 py-1 focus:outline-none w-48 md:w-64"
+                className="bg-white text-black rounded-full px-2 py-1 focus:outline-none w-full pr-10"
                 onFocus={() => {
                   if (searchResults.products.length > 0 || searchResults.shops.length > 0 || searchResults.activities.length > 0) {
                     setShowDropdown(true);
                   }
                 }}
               />
-              <button type="submit" className="text-green-600 hover:text-green-800 p-1 rounded-r-full">
+              <button type="submit" className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 p-1">
                 <FiSearch size={20} />
               </button>
 
