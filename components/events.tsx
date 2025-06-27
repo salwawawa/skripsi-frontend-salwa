@@ -65,7 +65,6 @@ const EventsPage = () => {
                       {/* <p className="text-sm text-gray-600">⏰ <strong>Waktu:</strong> {time}</p> */}
                       <p className="text-sm text-gray-600">📍 <strong>Lokasi:</strong> {activity.lokasi || 'N/A'}</p>
                       <p className="text-sm text-gray-600">👥 <strong>Peserta:</strong> {activity.peserta}</p>
-                      <p className="text-sm text-gray-600">🎤 <strong>Penceramah:</strong> {activity.deskripsi || 'N/A'}</p>
                     </div>
                   </Link>
                 );
