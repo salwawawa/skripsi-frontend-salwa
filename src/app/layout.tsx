@@ -40,8 +40,10 @@ export default function RootLayout({
         <script src="https://files.bpcontent.cloud/2025/05/15/01/20250515012432-3SDQKES6.js"></script> */}
 
         {/* ----BOT AKUN SALWA260----- */}
-        <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js"></script>
-        <script src="https://files.bpcontent.cloud/2025/06/28/08/20250628081612-9CSBIFD3.js"></script>
+        
+        <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js" defer></script>
+        <script src="https://files.bpcontent.cloud/2025/06/28/09/20250628090251-XSSRNXSQ.js" defer></script>
+          
     
       </body>
     </html>
