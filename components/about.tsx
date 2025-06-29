@@ -89,7 +89,7 @@ export default function About(): JSX.Element {
     },
     {
       question: "Bagaimana jika saya mengalami kendala saat memesan produk atau saat menggunakan bot TAMI?",
-      answer: "Hubungi admin melalui fitur 'Kritik & Saran' di bot TAMI atau melalui kontak yang tersedia di website|Screenshot error atau masalah yang terjadi untuk memudahkan troubleshooting|Jelaskan kendala yang dialami dengan sejelas mungkin|Tunggu respon dari tim support",
+      answer: "Hubungi admin melalui kontak yang tersedia di header chatbot TAMI saat diklik|Screenshot error atau masalah yang terjadi untuk memudahkan troubleshooting|Jelaskan kendala yang dialami|Tunggu respon dari tim support",
       isNumbered: true
     }
   ];

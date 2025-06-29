@@ -35,15 +35,13 @@ export default function RootLayout({
       >
         <Navbar />
         <main>{children}</main>
-        {/* -- BOT TAMI (AKUN STUDENT) -- */}
-        {/* <script src="https://cdn.botpress.cloud/webchat/v2.5/inject.js"></script>
-        <script src="https://files.bpcontent.cloud/2025/05/15/01/20250515012432-3SDQKES6.js"></script> */}
-
-        {/* ----BOT AKUN SALWA260----- */}
-        
+        {/* -----BOT UTAMA------- */}
         <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js" defer></script>
         <script src="https://files.bpcontent.cloud/2025/06/28/09/20250628090251-XSSRNXSQ.js" defer></script>
           
+        {/* ------ BOT BACKUP ------- */}
+        {/* <script src="https://cdn.botpress.cloud/webchat/v3.0/inject.js" defer></script>
+        <script src="https://files.bpcontent.cloud/2025/05/15/01/20250515012432-3SDQKES6.js" defer></script> */}
     
       </body>
     </html>
